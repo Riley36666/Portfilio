@@ -3,19 +3,14 @@ import { useRef } from "react";
 import Background from "../components/Background";
 
 
-export default function Contact() {
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const messageRef = useRef();
+async function sendEmail(e) {
+  e.preventDefault();
 
-  async function sendEmail(e) {
-    e.preventDefault();
+  const name = nameRef.current.value;
+  const email = emailRef.current.value;
+  const message = messageRef.current.value;
 
-    const name = nameRef.current.value;
-    const email = emailRef.current.value;
-    const message = messageRef.current.value;
-
-    try {
+  try {
     const res = await fetch("admin/addMessages", {
       method: "POST",
       headers: {
@@ -25,12 +20,28 @@ export default function Contact() {
     });
 
     const data = await res.json();
-    return data.success; 
+
+    if (data.success) {
+      setToast({ type: "success", text: "Message sent successfully!" });
+
+      // clear inputs
+      nameRef.current.value = "";
+      emailRef.current.value = "";
+      messageRef.current.value = "";
+    } else {
+      setToast({ type: "error", text: "Failed to send message." });
+    }
+
+    // auto hide toast
+    setTimeout(() => setToast(null), 3000);
+
   } catch (err) {
-    return false;
+    setToast({ type: "error", text: "Server error. Try again." });
+    setTimeout(() => setToast(null), 3000);
   }
+}
     
-  }
+
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -116,5 +127,5 @@ export default function Contact() {
       </div>
     </div>
   );
-}
+
 

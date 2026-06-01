@@ -17,7 +17,7 @@ export default function Projects() {
       name: "Portfolio",
       lang: "JavaScript",
       desc: "Personal portfolio built with React, Tailwind and smooth animations.",
-      link: "https://github.com/Riley36666/ActuallyPortfilio",
+      link: "https://github.com/Riley36666/Portfilio",
       stack: ["React", "Tailwind", "Framer Motion"]
     },
     {
@@ -33,14 +33,7 @@ export default function Projects() {
       desc: "2D platformer inspired by Mario with custom physics and logic.",
       link: "/javagame",
       stack: ["Java", "Game Logic"]
-    },
-    {
-      name: "Imposter Remake",
-      lang: "TypeScript",
-      desc: "Multiplayer-style party game focused on identifying the odd one out.",
-      link: "https://github.com/Riley36666/ImposterRemake",
-      stack: ["TypeScript", "Game Logic"]
-    },
+    }
   ];
 
   return (

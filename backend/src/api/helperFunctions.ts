@@ -1,6 +1,6 @@
 import si from 'systeminformation';
 import fetch from "node-fetch";
-
+const WEBHOOK = process.env.DISCORD_WEBHOOK_URL || "";
 
 
 
@@ -81,7 +81,6 @@ export async function getPublicIP() {
 }
 
 export async function discord() {
-  const WEBHOOK = process.env.DISCORD_WEBHOOK_URL;
   const ip = await getPublicIP();
   const pcInfo = await getPcInfo();
   const user = await getUser();
