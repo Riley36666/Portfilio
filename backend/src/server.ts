@@ -6,7 +6,6 @@ import adminRoute from "./api/admin"
 
 
 
-
 dotenv.config();
 const PORT = Number(process.env.port) || 9999;
 const app = express();
