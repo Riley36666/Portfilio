@@ -4,7 +4,8 @@ const router = express.Router();
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
-
+import dotenv from "dotenv";
+dotenv.config();
 
 async function auth(req: Request, res: Response, next: () => any) {
   const clientToken = req.headers["x-admin-token"];
@@ -38,7 +39,6 @@ async function auth(req: Request, res: Response, next: () => any) {
 router.post("/Password", async (req, res) => {
   const { password } = req.body;
   const backendPass = process.env.PASSWORD;
-
   if (password === backendPass) {
     const token = crypto.randomBytes(32).toString("hex");
     try {
