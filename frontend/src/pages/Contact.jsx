@@ -1,47 +1,51 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Background from "../components/Background";
 
 
-async function sendEmail(e) {
-  e.preventDefault();
+export default function Contact() {
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
+  const [toast, setToast] = useState(null);
 
-  const name = nameRef.current.value;
-  const email = emailRef.current.value;
-  const message = messageRef.current.value;
+  async function sendEmail(e) {
+    e.preventDefault();
 
-  try {
-    const res = await fetch("admin/addMessages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, message })
-    });
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const message = messageRef.current.value;
 
-    const data = await res.json();
+    try {
+      const res = await fetch("admin/addMessages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, message })
+      });
 
-    if (data.success) {
-      setToast({ type: "success", text: "Message sent successfully!" });
+      const data = await res.json();
 
-      // clear inputs
-      nameRef.current.value = "";
-      emailRef.current.value = "";
-      messageRef.current.value = "";
-    } else {
-      setToast({ type: "error", text: "Failed to send message." });
+      if (data.success) {
+        setToast({ type: "success", text: "Message sent successfully!" });
+
+        // clear inputs
+        nameRef.current.value = "";
+        emailRef.current.value = "";
+        messageRef.current.value = "";
+      } else {
+        setToast({ type: "error", text: "Failed to send message." });
+      }
+
+      // auto hide toast
+      setTimeout(() => setToast(null), 3000);
+
+    } catch (err) {
+      setToast({ type: "error", text: "Server error. Try again." });
+      setTimeout(() => setToast(null), 3000);
     }
-
-    // auto hide toast
-    setTimeout(() => setToast(null), 3000);
-
-  } catch (err) {
-    setToast({ type: "error", text: "Server error. Try again." });
-    setTimeout(() => setToast(null), 3000);
   }
-}
-    
-
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -127,5 +131,6 @@ async function sendEmail(e) {
       </div>
     </div>
   );
+}
 
 

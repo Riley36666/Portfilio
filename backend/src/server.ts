@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
-import adminRoute from "./api/Admin"
+import adminRoute from "./api/admin"
 
 
 
