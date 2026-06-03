@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import {returnInfo} from './HelperFunctions';
+import {returnInfo} from './helperFunctions';
 import { auth } from './Auth'
 const router = express.Router();
 import fs from "fs";
