@@ -1,76 +1,47 @@
 # ActuallyPortfolio
 
-**ActuallyPortfolio** is a full‑stack application that demonstrates a simple portfolio / showcase web app with a TypeScript backend API and a modern JavaScript front‑end. The project is built with a lightweight stack to keep the codebase readable and easy to extend.
+ActuallyPortfolio is a full‑stack portfolio web application showcasing a TypeScript Express API (backend/) and a modern React + Vite frontend (frontend/). It’s designed as a small, easy-to-extend example app you can run and adapt.
 
----
+Highlights
+- TypeScript backend with simple API routes
+- React frontend built with Vite and client-side routing
+- Minimal, easy-to-follow project structure for learning or portfolio use
 
-## Structure
+Quick start (root)
 
+1. Install dependencies:
+
+   npm install
+
+2. Start both dev servers (frontend + backend):
+
+   npm run dev
+
+3. Frontend: http://localhost:5173, Backend: http://localhost:9999 (or PORT env)
+
+If you prefer to run services separately:
+- Backend: npm --prefix backend install && npm --prefix backend run dev
+- Frontend: npm --prefix frontend install && npm --prefix frontend run dev
+
+Project structure
 ```
-├── backend/           # API written in TypeScript
-│   └── src/
-│       ├── api/
-│       │   ├── admin.ts
-│       │   └── ...
-│       └── ...
-├── frontend/          # Front‑end (React/Vite/Webpack)
-│   └── src/
-│       ├── app.tsx
-│       └── ...
-├── package.json
-├── tsconfig.json
-└── README.md
-```
-
-## Prerequisites
-
-- Node.js 20.x or newer
-- npm (or pnpm if you prefer)
-
-## Getting Started
-
-```bash
-# install dependencies
-npm install
-
-# run backend & frontend concurrently
-npm run dev
+/backend   - TypeScript API (src/)
+/frontend  - React + Vite app (src/)
+package.json - root helper scripts (dev/build)
+README.md  - this file
 ```
 
-The dev server starts the API on `localhost:4000` and the front‑end on `localhost:5173`. Open the latter in a browser to view the app.
+Scripts (root)
+- npm run dev — starts frontend and backend concurrently (requires devDependencies installed at root)
+- npm run build — builds the frontend (and any build steps configured for backend)
 
-## Running Tests
+Notes & next steps
+- Tests: backend currently has no automated tests; add unit tests and CI before production
+- Linting / type checks: add ESLint/TypeScript checks in CI
+- Production: add a build and start script for the backend and document deployment
 
-The repository contains unit tests for the backend logic. To run them:
+Contributing
+- Open issues or PRs. Small, focused changes and tests are appreciated.
 
-```bash
-npm test
-```
-
-Ensure there are no lint or type‑checking errors before committing.
-
-## Building for Production
-
-To generate a production build of both the client and the server:
-
-```bash
-npm run build
-```
-
-The output will be in `frontend/dist` and the compiled back‑end code in `backend/dist`.
-
-## Contributing
-
-Feel free to open pull requests or issues. We appreciate:
-
-- Small, self‑contained changes
-- Tests covering new logic
-- Documentation updates if you modify public APIs
-
-Please check the existing styling and coding conventions before submitting.
-
----
-
-## License
-
-MIT
+License
+- MIT

@@ -1,16 +1,43 @@
-# React + Vite
+# Frontend — React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the React frontend built with Vite. It’s a lightweight SPA using React Router for navigation and common UI libraries.
 
-Currently, two official plugins are available:
+Quick start (inside frontend/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Install dependencies:
 
-## React Compiler
+   npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Start dev server:
 
-## Expanding the ESLint configuration
+   npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Build for production:
+
+   npm run build
+
+Helpful scripts
+- dev — starts Vite with hot-module replacement
+- build — creates an optimized production build
+- preview — serves the production build locally
+- lint — run ESLint
+
+Notes
+- Uses React Router for client-side routing. Routes are defined in src/App.jsx.
+- Tailwind/Vite plugins may be included — check package.json for devDependencies.
+- If enabling TypeScript, add type-aware ESLint rules and update tsconfig.json.
+
+Troubleshooting
+- If the app fails to compile, delete node_modules and reinstall:
+
+  rm -rf node_modules && npm install
+
+- Run the frontend independently (useful when debugging):
+
+  npm --prefix frontend run dev
+
+Links
+- Vite: https://vitejs.dev/
+- React: https://reactjs.org/
+
+License: MIT
