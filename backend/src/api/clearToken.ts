@@ -5,9 +5,9 @@ import fs from "fs";
 import path from "path";
 import cron from "cron";
 
-cron.CronJob("0 0 * * *", () => {
-  clearToken();
-}, null, true);
+new cron.CronJob("0 0 * * *", () => {
+    clearToken();
+}).start();
 
 
 export function clearToken() {
