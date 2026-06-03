@@ -9,7 +9,7 @@ import adminRoute from "./api/admin"
 dotenv.config();
 const PORT = Number(process.env.PORT) || 9999;
 const app = express();
-const webURL = process.env.WEB_URL || "http://localhost:9999";
+
 
 
 
