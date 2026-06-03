@@ -4,9 +4,17 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "dev": "cd src/ && tsx server.ts",
     "run": "nodemon --watch src --exec ts-node src/server.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/ws": "^8.18.1",
+    "vitest": "^1.1.5",
+    "supertest": "^6.3.3",
+    "@types/supertest": "^2.0.12"
   },
   "keywords": [],
   "author": "",

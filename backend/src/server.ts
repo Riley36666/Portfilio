@@ -46,7 +46,11 @@ if (isProd) {
 //   res.send("Hello world");
 // })
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server started at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server started at http://localhost:${PORT}`);
+  });
+}
+
+export default app;
 
