@@ -41,7 +41,7 @@ export default function Contact() {
       // auto hide toast
       setTimeout(() => setToast(null), 3000);
 
-    } catch (err) {
+    } catch {
       setToast({ type: "error", text: "Server error. Try again." });
       setTimeout(() => setToast(null), 3000);
     }
@@ -117,6 +117,19 @@ export default function Contact() {
             </motion.button>
           </form>
         </motion.div>
+
+        {toast && (
+          <div
+            className={`mt-6 rounded-xl px-4 py-3 text-sm font-medium ${
+              toast.type === "success"
+                ? "bg-teal-300 text-black"
+                : "bg-red-500/20 text-red-200 border border-red-400/40"
+            }`}
+            role="status"
+          >
+            {toast.text}
+          </div>
+        )}
 
         {/* Extra Contact Info */}
         <motion.div

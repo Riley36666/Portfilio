@@ -1,19 +1,24 @@
-// @ts-ignore: supertest may not have type declarations in this environment-
-import { beforeEach, describe, expect, test } from 'vitest';
+import { afterAll, beforeEach, describe, expect, test } from 'vitest';
 // @ts-ignore: supertest may not have type declarations in this environment
 const request = require('supertest');
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import app from '../server';
 
-const TEST_DATA_DIR = path.join(__dirname, 'tmp_test_data');
+const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'portfolio-admin-return-test-'));
 const messagesPath = path.join(TEST_DATA_DIR, 'messages.json');
 const sessionPath = path.join(TEST_DATA_DIR, 'session.json');
 
 beforeEach(() => {
   process.env.NODE_ENV = 'test';
   process.env.DATA_DIR = TEST_DATA_DIR;
-  try { fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true }); } catch {}
+  fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true });
+  fs.mkdirSync(TEST_DATA_DIR, { recursive: true });
+});
+
+afterAll(() => {
+  fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true });
 });
 
 describe('Admin returnMessages', () => {
