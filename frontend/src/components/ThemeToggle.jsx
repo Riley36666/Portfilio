@@ -80,10 +80,7 @@ export default function ThemeToggle() {
 
   return (
     <label className="theme-picker" title={`Theme: ${activeTheme.label}`}>
-      <span className="theme-picker__swatch" style={{ background: activeTheme.color }} />
-      <span className="theme-picker__content">
-        <span className="theme-picker__eyebrow">UI Colour</span>
-        <span className="theme-picker__name">{activeTheme.label}</span>
+      <span className="theme-picker__content"> 
       </span>
       <select
         className="theme-picker__select"
