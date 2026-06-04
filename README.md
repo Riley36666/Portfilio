@@ -35,6 +35,32 @@ Scripts (root)
 - npm run dev — starts frontend and backend concurrently (requires devDependencies installed at root)
 - npm run build — builds the frontend (and any build steps configured for backend)
 
+
+## Docker
+
+Build a Docker image for Docker Hub under the `riley36666` account:
+
+```bash
+docker build -t riley36666/portfilio:latest .
+```
+
+Run the container locally:
+
+```bash
+docker run --rm \
+  -p 9999:9999 \
+  -e USERNAME=admin \
+  -e PASSWORD=change-me \
+  -v portfolio-data:/app/backend/data \
+  riley36666/portfilio:latest
+```
+
+Then open http://localhost:9999. To publish the image, log in with `docker login` and run:
+
+```bash
+docker push riley36666/portfilio:latest
+```
+
 Notes & next steps
 - Tests: backend now has Vitest tests (backend/src/__tests__) and CI was updated to run them. Expand coverage as needed.
 - Linting / type checks: backend now includes a tsconfig and "type-check"/"build" scripts; CI runs frontend lint and backend type-check. Run locally with:
