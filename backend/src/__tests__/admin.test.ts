@@ -37,11 +37,12 @@ describe('Admin routes', () => {
   }, 10000);
 
   test('POST /admin/Password should write token', async () => {
+    process.env.USERNAME = 'test';
     process.env.PASSWORD = 'secret';
 
     const res = await request(app)
       .post('/admin/Password')
-      .send({ password: 'secret' });
+      .send({ username: 'test', password: 'secret' });
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);

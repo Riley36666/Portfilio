@@ -5,8 +5,7 @@ const router = express.Router();
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
-import { dataDir, dataFile } from '../dataPath';
-
+import { getDataDir, dataFile } from '../dataPath';
 
 router.post("/Password", async (req, res) => {
   const { username, password } = req.body;
@@ -70,7 +69,7 @@ router.get("/info", auth, async(req: Request, res: Response) => {
 
 
 function checkPasswordFile() {
-  const dataFolder = dataDir;
+  const dataFolder = getDataDir(); 
   const passwordFile = dataFile('session.json');
 
   if (!fs.existsSync(dataFolder)) {
@@ -86,7 +85,7 @@ function checkPasswordFile() {
 }
 
 function checkMessageFile() {
-  const dataFolder = dataDir;
+  const dataFolder = getDataDir();
   const messageFile = dataFile('messages.json');
 
   if (!fs.existsSync(dataFolder)) {
