@@ -1,6 +1,6 @@
 import fs from "fs";
-import path from "path";
 import { CronJob } from "cron";
+import { dataFile, getDataDir } from "../dataPath";
 
 const job = new CronJob("* */10 * * * *", () => {
   clearToken();
@@ -9,6 +9,6 @@ const job = new CronJob("* */10 * * * *", () => {
 job.start();
 
 export function clearToken() {
-  const filePath = path.join(__dirname, "../data/session.json");
-  fs.writeFileSync(filePath, "{}");
+  fs.mkdirSync(getDataDir(), { recursive: true });
+  fs.writeFileSync(dataFile("session.json"), "{}");
 }
