@@ -15,26 +15,33 @@ const sessionPath = path.join(TEST_DATA_DIR, 'session.json');
 beforeEach(() => {
   process.env.NODE_ENV = 'test';
   process.env.DATA_DIR = TEST_DATA_DIR;
-  // ensure clean state
-  try { fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true }); } catch {}
+
+  fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true });
+  fs.mkdirSync(TEST_DATA_DIR, { recursive: true }); // 👈 ADD THIS
 });
 
 describe('Admin routes', () => {
   test('POST /admin/addMessages should save message', async () => {
-    const res = await request(app)
-      .post('/admin/addMessages')
-      .send({ name: 'Alice', email: 'a@b.com', message: 'Hello' })
-      .set('Accept', 'application/json');
+  const res = await request(app)
+    .post('/admin/addMessages')
+    .send({ name: 'Alice', email: 'a@b.com', message: 'Hello' })
+    .set('Accept', 'application/json');
 
-    expect(res.status).toBe(200);
-    expect(res.body.success).toBe(true);
+  console.log('Expected path:', messagesPath);
+  console.log('File exists:', fs.existsSync(messagesPath));
 
-    const raw = fs.readFileSync(messagesPath, 'utf-8');
-    const messages = JSON.parse(raw);
-    expect(Array.isArray(messages)).toBe(true);
-    expect(messages.length).toBe(1);
-    expect(messages[0].name).toBe('Alice');
-  }, 10000);
+  expect(res.status).toBe(200);
+  expect(res.body.success).toBe(true);
+
+  const raw = fs.readFileSync(messagesPath, 'utf-8');
+  const messages = JSON.parse(raw);
+
+  console.log('Messages:', messages);
+
+  expect(Array.isArray(messages)).toBe(true);
+  expect(messages.length).toBe(1);
+  expect(messages[0].name).toBe('Alice');
+});
 
   test('POST /admin/Password should write token', async () => {
     process.env.USERNAME = 'test';
