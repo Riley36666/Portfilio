@@ -1,13 +1,13 @@
 # Project Tasks & Roadmap
 
-A concise list of recommended tasks to move ActuallyPortfolio from "almost there" to a production-ready portfolio app.
+A concise list of recommended tasks to move Portfilio from "almost there" to a production-ready portfolio app.
 
 ---
 
 ## 🚨 Immediate (High Priority)
 
 - [x] **Add CI (GitHub Actions)** — run install, build (and tests/lint when added)
-- [ ] **Add backend unit tests** — replace placeholder test script
+- [half done] **Add backend unit tests** — replace placeholder test script
 - [ ] **Add linting & type checks** — ESLint + TypeScript checks in CI
 - [ ] **Document production build & start** — backend build/start, env semantics
 
@@ -32,9 +32,3 @@ Estimated effort
 - Medium: 2–3 days
 - Nice-to-have: ongoing
 
-How to proceed
-1. Decide CI scope (simple build vs lint+tests).  
-2. Add a GitHub Actions workflow in `.github/workflows/` (I can create one).  
-3. Add tests and update package.json scripts.
-
-If you want, pick a CI option and I will create the workflow file for you.

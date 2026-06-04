@@ -20,7 +20,6 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || [FRONTEND_DEV_URL, FRONTE
 
 app.use(cors({
   origin: (origin, callback) => {
-    // allow non-browser clients like curl or server-to-server requests
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
     return callback(new Error('CORS not allowed for origin: ' + origin));
