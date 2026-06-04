@@ -1,4 +1,7 @@
-import request from 'supertest';
+// @ts-ignore: supertest may not have type declarations in this environment-
+import { beforeEach, describe, expect, test } from '@jest/globals';
+// @ts-ignore: supertest may not have type declarations in this environment
+const request = require('supertest');
 import fs from 'fs';
 import path from 'path';
 import app from '../server';

@@ -1,3 +1,6 @@
+// @ts-ignore
+import { beforeEach, describe, expect, test } from '@jest/globals';
+// @ts-ignore: supertest may not have type declarations in this environment
 import request from 'supertest';
 import fs from 'fs';
 import path from 'path';
