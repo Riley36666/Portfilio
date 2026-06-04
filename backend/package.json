@@ -1,7 +1,7 @@
 {
   "name": "backend",
-  "version": "1.0.0",
-  "type": "commonjs",
+  "version": "1.2.1",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "vitest",
@@ -13,8 +13,6 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/jest": "^30.0.0",
-    "@types/mocha": "^10.0.10",
     "@types/node": "^20.5.1",
     "@types/supertest": "^7.2.0",
     "@types/ws": "^8.18.1",

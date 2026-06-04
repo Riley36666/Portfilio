@@ -5,7 +5,7 @@ import request from 'supertest';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import app from '../server';
+import app from '../server.js';
 
 // Use an isolated data dir for tests so runs do not modify tracked files.
 const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'portfolio-admin-test-'));

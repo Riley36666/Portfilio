@@ -1,6 +1,6 @@
 import fs from "fs";
 import { CronJob } from "cron";
-import { dataFile, getDataDir } from "../dataPath";
+import { dataFile, getDataDir } from "./dataPath.js";
 
 const job = new CronJob("* */10 * * * *", () => {
   clearToken();

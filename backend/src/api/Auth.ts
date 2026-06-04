@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
-import { dataFile } from '../dataPath';
+import { dataFile } from './dataPath.js';
 
 
 export async function auth(req: Request, res: Response, next: () => any) {

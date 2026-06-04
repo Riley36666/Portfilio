@@ -4,19 +4,18 @@ A concise list of recommended tasks to move Portfilio from "almost there" to a p
 
 ---
 
-## 🚨 Immediate (High Priority)
+## 🚨 Immediate | FINISHED
 
 - [x] **Add CI (GitHub Actions)** — run install, build (and tests/lint when added)
-- [in_progress] **Add backend unit tests** — Vitest is present for backend (backend/src/__tests__/admin.test.ts); expand tests and replace placeholder script
-- [in_progress] **Add linting & type checks** — frontend has an ESLint script; add ESLint/TypeScript checks to CI
-- [in_progress] **Document production build & start** — document backend build/start and env semantics; backend serves frontend/dist in production
+- [x] **Add backend unit tests** — Vitest is present for backend (backend/src/__tests__/admin.test.ts); expand tests and replace placeholder script
+- [x] **Add linting & type checks** — frontend has an ESLint script; add ESLint/TypeScript checks to CI
+- [x] **Document production build & start** — document backend build/start and env semantics; backend serves frontend/dist in production
 
 ## ⚙️ Next (Medium Priority)
 
 - [ ] Add frontend unit/integration tests
-- [ ] Harden CORS and auth/token handling in backend
-- [ ] Add pre-commit hooks (husky) and commit linting
-- [ ] Add Dockerfile(s) for local production testing
+- [x] Harden CORS and auth/token handling in backend
+- [x] Add Dockerfile(s) for local production testing
 
 ## ✨ Nice-to-have (Low Priority)
 

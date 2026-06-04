@@ -4,7 +4,7 @@ const request = require('supertest');
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import app from '../server';
+import app from '../server.js';
 
 const TEST_DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'portfolio-admin-return-test-'));
 const messagesPath = path.join(TEST_DATA_DIR, 'messages.json');

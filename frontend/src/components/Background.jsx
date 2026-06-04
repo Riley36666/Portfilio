@@ -6,23 +6,22 @@ const stars = Array.from({ length: 40 }, (_, i) => ({
 
 export default function Background() {
   return (
-    <div className="absolute inset-0 z-0">
-      <div className="absolute w-125 h-125 bg-teal-500/20 blur-3xl rounded-full 
-                      top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+    <>
+      <div className="background-canvas" aria-hidden="true" />
 
-      <div className="absolute inset-0 opacity-30">
-        {stars.map((star) => (
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {stars.map((star, idx) => (
           <span
             key={star.id}
-            className="absolute w-1 h-1 bg-teal-300 rounded-full"
+            className="background-star"
             style={{
               top: star.top,
               left: star.left,
+              ['--i']: idx
             }}
           />
         ))}
       </div>
-    </div>
+    </>
   );
-} 
-
+}

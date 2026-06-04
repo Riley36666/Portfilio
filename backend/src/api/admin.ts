@@ -1,11 +1,10 @@
 import express, { Request, Response } from "express";
-import {returnInfo} from './helperFunctions';
-import { auth } from './Auth'
+import { auth } from './Auth.js'
 const router = express.Router();
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
-import { getDataDir, dataFile } from '../dataPath';
+import { getDataDir, dataFile } from './dataPath.js';
 
 router.post("/Password", async (req, res) => {
   const { username, password } = req.body;
@@ -58,14 +57,7 @@ router.get("/returnMessages", auth, async (req: Request, res: Response) => {
 
 
 
-router.get("/info", auth, async(req: Request, res: Response) => {
-  try {
-    const data = await returnInfo();
-    res.json({data});
-  } catch (err) {
-    console.error(err);
-  }
-})
+
 
 
 function checkPasswordFile() {

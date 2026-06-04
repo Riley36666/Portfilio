@@ -5,7 +5,7 @@
   height: 100vh;       
   width: 150px;        
   
-  background: #0f172a;
+  background: rgb(var(--bg-panel));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,14 +22,14 @@
 }
 
 .nav-links a {
-  color: #cbd5f5;
+  color: rgb(var(--muted));
   text-decoration: none;
   font-weight: 500;
   transition: 0.2s;
 }
 
 .nav-links a:hover {
-  color: white;
+  color: rgb(var(--panel-text));
 }
 /* existing styles above */
 

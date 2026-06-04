@@ -2,11 +2,16 @@ import dotenv from "dotenv";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import path from "path";
-import adminRoute from "./api/admin"
-import "./api/clearToken";
+import adminRoute from "./api/admin.js"
+import "./api/clearToken.js";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-dotenv.config();
+dotenv.config({
+  path: path.resolve(__dirname, "../.env")
+});
 const PORT = Number(process.env.PORT) || 9999;
 const app = express();
 
@@ -28,6 +33,9 @@ app.use(cors({
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization','x-admin-token']
 }));
+
+
+
 app.use(express.json());
 
 app.use("/admin", adminRoute);
