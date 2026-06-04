@@ -1,16 +1,19 @@
 import request from 'supertest';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import app from '../server';
 
-const messagesPath = path.join(__dirname, '../data/messages.json');
-const sessionPath = path.join(__dirname, '../data/session.json');
+// Use an isolated data dir for tests
+const TEST_DATA_DIR = path.join(__dirname, 'tmp_test_data');
+const messagesPath = path.join(TEST_DATA_DIR, 'messages.json');
+const sessionPath = path.join(TEST_DATA_DIR, 'session.json');
 
 beforeEach(() => {
   process.env.NODE_ENV = 'test';
+  process.env.DATA_DIR = TEST_DATA_DIR;
   // ensure clean state
-  try { fs.unlinkSync(messagesPath); } catch {}
-  try { fs.unlinkSync(sessionPath); } catch {}
+  try { fs.rmSync(TEST_DATA_DIR, { recursive: true, force: true }); } catch {}
 });
 
 describe('Admin routes', () => {

@@ -1,6 +1,6 @@
-# ActuallyPortfolio
+# Portfilio
 
-ActuallyPortfolio is a full‑stack portfolio web application showcasing a TypeScript Express API (backend/) and a modern React + Vite frontend (frontend/). It’s designed as a small, easy-to-extend example app you can run and adapt.
+Portfilio is a full‑stack portfolio web application showcasing a TypeScript Express API (backend/) and a modern React + Vite frontend (frontend/). It’s designed as a small, easy-to-extend example app you can run and adapt.
 
 Highlights
 - TypeScript backend with simple API routes
@@ -17,7 +17,7 @@ Quick start (root)
 
    npm run dev
 
-3. Frontend: http://localhost:5173, Backend: http://localhost:9999 (or PORT env)
+3. Frontend: http://localhost:3000, Backend: http://localhost:9999 (or PORT env)
 
 If you prefer to run services separately:
 - Backend: npm --prefix backend install && npm --prefix backend run dev
@@ -36,12 +36,15 @@ Scripts (root)
 - npm run build — builds the frontend (and any build steps configured for backend)
 
 Notes & next steps
-- Tests: backend currently has no automated tests; add unit tests and CI before production
-- Linting / type checks: add ESLint/TypeScript checks in CI
-- Production: add a build and start script for the backend and document deployment
+- Tests: backend now has Vitest tests (backend/src/__tests__) and CI was updated to run them. Expand coverage as needed.
+- Linting / type checks: backend now includes a tsconfig and "type-check"/"build" scripts; CI runs frontend lint and backend type-check. Run locally with:
+  - npm --prefix backend run test
+  - npm --prefix backend run type-check
+  - npm --prefix backend run build
+- Production: backend now emits compiled server to backend/dist/server.js (tsc). Run backend build before starting production (root: npm run build then npm start).
 
 Contributing
-- Open issues or PRs. Small, focused changes and tests are appreciated.
+- Open issues or PRs. Small, focused changes and tests are appreciated. Consider adding tests when changing backend routes to avoid regressions.
 
 License
 - MIT

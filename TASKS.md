@@ -32,3 +32,9 @@ Estimated effort
 - Medium: 2–3 days
 - Nice-to-have: ongoing
 
+Progress updates
+- Added CI (GitHub Actions) that installs both packages and builds the frontend.
+- Backend: added tsconfig, type-check and build scripts, Vitest tests, and test isolation (tests use TEST_DATA_DIR).
+- CI: now runs backend tests and backend type-check, plus frontend lint.
+- Note: run `npm --prefix backend install` after pulling these changes to install new devDependencies.
+

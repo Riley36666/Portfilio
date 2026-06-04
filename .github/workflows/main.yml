@@ -24,8 +24,18 @@ jobs:
       - name: Install frontend dependencies
         run: npm --prefix frontend install
 
+      - name: Run backend tests
+        run: npm --prefix backend run test
+
+      - name: Run backend type-check
+        run: npm --prefix backend run type-check
+
+      - name: Run frontend lint
+        run: npm --prefix frontend run lint
+
       - name: Build frontend
         run: npm --prefix frontend run build
 
       - name: Verify frontend build
         run: ls -la frontend/dist || true
+

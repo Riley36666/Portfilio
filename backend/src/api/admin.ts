@@ -5,6 +5,7 @@ const router = express.Router();
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
+import { dataDir, dataFile } from '../dataPath';
 
 
 router.post("/Password", async (req, res) => {
@@ -15,7 +16,7 @@ router.post("/Password", async (req, res) => {
   if (username === usernameEnv && password === backendPass) {
     const token = crypto.randomBytes(32).toString("hex");
     try {
-      await fs.promises.writeFile(path.join(__dirname, "../data/session.json"), JSON.stringify({ token }), { encoding: "utf-8" });
+      await fs.promises.writeFile(dataFile('session.json'), JSON.stringify({ token }), { encoding: "utf-8" });
       return res.json({ success: true, token });
     } catch (err) {
       console.error(err);
@@ -30,7 +31,7 @@ router.post("/Password", async (req, res) => {
 router.post("/addMessages", async (req: Request, res: Response) => {
   const { name, email, message } = req.body;
   if(checkMessageFile()){
-  const filePath = path.join(__dirname, "../data/messages.json");
+  const filePath = dataFile('messages.json');
   try {
     const raw = await fs.promises.readFile(filePath, "utf-8");
     const messages = JSON.parse(raw);
@@ -42,10 +43,9 @@ router.post("/addMessages", async (req: Request, res: Response) => {
     res.status(500).json({ success: false, error: "Failed to save message" });
   }
 }});
-
 router.get("/returnMessages", auth, async (req: Request, res: Response) => {
   if(checkMessageFile()){
-  const filePath = path.join(__dirname, "../data/messages.json");
+  const filePath = dataFile('messages.json');
   try {
     const raw = await fs.promises.readFile(filePath, "utf-8");
     const messages = JSON.parse(raw);
@@ -70,8 +70,8 @@ router.get("/info", auth, async(req: Request, res: Response) => {
 
 
 function checkPasswordFile() {
-  const dataFolder = path.join(__dirname, '../data');
-  const passwordFile = path.join(dataFolder, 'session.json');
+  const dataFolder = dataDir;
+  const passwordFile = dataFile('session.json');
 
   if (!fs.existsSync(dataFolder)) {
     fs.mkdirSync(dataFolder, { recursive: true });
@@ -86,8 +86,8 @@ function checkPasswordFile() {
 }
 
 function checkMessageFile() {
-  const dataFolder = path.join(__dirname, '../data');
-  const messageFile = path.join(dataFolder, 'messages.json');
+  const dataFolder = dataDir;
+  const messageFile = dataFile('messages.json');
 
   if (!fs.existsSync(dataFolder)) {
     fs.mkdirSync(dataFolder, { recursive: true });

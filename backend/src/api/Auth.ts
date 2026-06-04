@@ -2,11 +2,12 @@ import express, { Request, Response } from "express";
 import path from "path";
 import fs from "fs";
 import crypto from "crypto";
+import { dataFile } from '../dataPath';
 
 
 export async function auth(req: Request, res: Response, next: () => any) {
   const clientToken = req.headers["x-admin-token"];
-  const filePath = path.join(__dirname, "../data/session.json");
+  const filePath = dataFile('session.json');
   const envToken = process.env.ADMIN_TOKEN;
 
   const verify = (a?: string, b?: string) => {
