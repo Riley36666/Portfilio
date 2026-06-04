@@ -1,5 +1,5 @@
 // @ts-ignore: supertest may not have type declarations in this environment-
-import { beforeEach, describe, expect, test } from '@jest/globals';
+import { beforeEach, describe, expect, test } from 'vitest';
 // @ts-ignore: supertest may not have type declarations in this environment
 const request = require('supertest');
 import fs from 'fs';
