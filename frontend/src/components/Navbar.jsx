@@ -84,6 +84,8 @@ export default function Navbar() {
             <HiX />
           </button>
 
+          <ThemeToggle />
+
           {/* Mobile Links */}
           {links.map((link) => {
             const isActive = pathname === link.path;

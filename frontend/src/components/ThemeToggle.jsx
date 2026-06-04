@@ -1,56 +1,102 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./ThemeToggle.css";
 
 const themes = [
-  { id: "", label: "Light", color: "#ffffff" },
-  { id: "theme-dark", label: "Dark", color: "#0b1220" },
-  { id: "theme-green", label: "Green", color: "#16a34a" },
-  { id: "theme-purple", label: "Purple", color: "#8b5cf6" },
-  { id: "theme-amber", label: "Amber", color: "#f59e0b" },
-  { id: "theme-rose", label: "Rose", color: "#ef4444" },
+  {
+    id: "",
+    label: "Ocean",
+    color: "#14b8a6",
+    description: "Cool teal glow",
+  },
+  {
+    id: "theme-aurora",
+    label: "Aurora",
+    color: "#22c55e",
+    description: "Green night sky",
+  },
+  {
+    id: "theme-purple",
+    label: "Nebula",
+    color: "#a855f7",
+    description: "Purple space haze",
+  },
+  {
+    id: "theme-amber",
+    label: "Sunset",
+    color: "#f59e0b",
+    description: "Warm orange glow",
+  },
+  {
+    id: "theme-rose",
+    label: "Rose",
+    color: "#f43f5e",
+    description: "Pink neon bloom",
+  },
+  {
+    id: "theme-dark",
+    label: "Midnight",
+    color: "#38bdf8",
+    description: "Deep blue contrast",
+  },
 ];
 
+
+function getStoredTheme() {
+  const storedTheme = localStorage.getItem("theme") || "";
+
+  return themes.some((theme) => theme.id === storedTheme) ? storedTheme : themes[0].id;
+}
+
+function applyTheme(id) {
+  const doc = document.documentElement;
+
+  Array.from(doc.classList)
+    .filter((className) => className.startsWith("theme-"))
+    .forEach((className) => doc.classList.remove(className));
+
+  if (id) {
+    doc.classList.add(id);
+  }
+}
+
 export default function ThemeToggle() {
-  const [index, setIndex] = useState(0);
+  const [selectedTheme, setSelectedTheme] = useState(getStoredTheme);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme") || "";
-    const idx = themes.findIndex((t) => t.id === stored);
-    setIndex(idx >= 0 ? idx : 0);
-    applyTheme(stored);
-  }, []);
+    applyTheme(selectedTheme);
+  }, [selectedTheme]);
 
-  function applyTheme(id) {
-    // remove all theme-* classes
-    const doc = document.documentElement;
-    Array.from(doc.classList)
-      .filter((c) => c.startsWith("theme-"))
-      .forEach((c) => doc.classList.remove(c));
+  const activeTheme = useMemo(
+    () => themes.find((theme) => theme.id === selectedTheme) || themes[0],
+    [selectedTheme],
+  );
 
-    if (id) doc.classList.add(id);
-  }
-
-  function handleToggle() {
-    const next = (index + 1) % themes.length;
-    setIndex(next);
-    const id = themes[next].id;
-    applyTheme(id);
-    localStorage.setItem("theme", id);
+  function handleThemeChange(event) {
+    const nextTheme = event.target.value;
+    setSelectedTheme(nextTheme);
+    applyTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
   }
 
   return (
-    <button
-      className="theme-toggle"
-      onClick={handleToggle}
-      title={`Theme: ${themes[index].label}`}
-      aria-label={`Toggle theme (current: ${themes[index].label})`}
-    >
-      <span
-        className="theme-dot"
-        style={{ background: themes[index].color }}
-        aria-hidden
-      />
-      <span className="theme-label">{themes[index].label}</span>
-    </button>
+    <label className="theme-picker" title={`Theme: ${activeTheme.label}`}>
+      <span className="theme-picker__swatch" style={{ background: activeTheme.color }} />
+      <span className="theme-picker__content">
+        <span className="theme-picker__eyebrow">UI Colour</span>
+        <span className="theme-picker__name">{activeTheme.label}</span>
+      </span>
+      <select
+        className="theme-picker__select"
+        value={selectedTheme}
+        onChange={handleThemeChange}
+        aria-label="Choose site colour theme"
+      >
+        {themes.map((theme) => (
+          <option key={theme.label} value={theme.id}>
+            {theme.label} — {theme.description}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
