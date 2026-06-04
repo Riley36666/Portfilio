@@ -8,10 +8,11 @@ import crypto from "crypto";
 
 
 router.post("/Password", async (req, res) => {
-  const { password } = req.body;
+  const { username, password } = req.body;
+  const usernameEnv = process.env.USERNAME;
   const backendPass = process.env.PASSWORD;
   if(checkPasswordFile()){
-  if (password === backendPass) {
+  if (username === usernameEnv && password === backendPass) {
     const token = crypto.randomBytes(32).toString("hex");
     try {
       await fs.promises.writeFile(path.join(__dirname, "../data/session.json"), JSON.stringify({ token }), { encoding: "utf-8" });

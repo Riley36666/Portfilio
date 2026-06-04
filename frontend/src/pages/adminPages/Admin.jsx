@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+
 import AdminLogin from "../../components/login";
 
 // ---------------------- API HELPERS ----------------------
 
-async function checkPassword(password) {
+async function checkPassword(user, password) {
   try {
     const res = await fetch("/admin/Password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password })
+      body: JSON.stringify({ 
+        username: user,
+        password: password })
     });
 
     const data = await res.json();
@@ -24,19 +26,7 @@ async function checkPassword(password) {
   }
 }
 
-async function getAllInfo() {
-  try {
-    const res = await fetch("/admin/info", {
-      headers: {
-        "x-admin-token": localStorage.getItem("adminToken")
-      }
-    });
 
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
 
 async function getMessages() {
   try {
@@ -57,14 +47,14 @@ async function getMessages() {
 
 export default function Admin() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [userInput, setUserInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [systemInfo, setSystemInfo] = useState(null);
 
   async function handleLogin(e) {
     e.preventDefault();
 
-    const ok = await checkPassword(passwordInput);
+    const ok = await checkPassword(userInput, passwordInput);
 
     if (ok) {
       setAuthenticated(true);
@@ -77,14 +67,14 @@ export default function Admin() {
         JSON.stringify(Array.isArray(msgs) ? msgs : [])
       );
 
-      const info = await getAllInfo();
-      setSystemInfo(info ?? {});
     }
   }
 
   if (!authenticated) {
     return (
       <AdminLogin
+        username={userInput}
+        setUsername={setUserInput}
         password={passwordInput}
         setPassword={setPasswordInput}
         onLogin={handleLogin}
@@ -92,7 +82,6 @@ export default function Admin() {
     );
   }
 
-  const sys = systemInfo?.data ?? {};
 
   return (
     <div className="min-h-screen bg-black text-white p-10 space-y-12">
@@ -135,17 +124,6 @@ export default function Admin() {
             </div>
           )}
         </div>
-
-        {/* SYSTEM INFO (DISABLED SAFE) */}
-        {false && (
-          <div>
-            <h2 className="text-3xl font-bold text-teal-300 mb-4">
-              System Info
-            </h2>
-
-            <p className="text-gray-400">System info disabled</p>
-          </div>
-        )}
 
       </div>
     </div>
