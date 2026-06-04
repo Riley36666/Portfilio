@@ -1,0 +1,5 @@
+@media (max-width: 768px) {
+  .footer-mobile-offset {
+    padding-bottom: 30px; /* adjust as needed */
+  }
+}

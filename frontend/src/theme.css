@@ -1,0 +1,29 @@
+:root {
+  --accent: 20 184 166; /* teal */
+}
+
+html.theme-purple {
+  --accent: 168 85 247;
+}
+
+html.theme-amber {
+  --accent: 245 158 11;
+}
+
+html.theme-rose {
+  --accent: 244 63 94;
+}
+button {
+  border: 2px solid red;
+}
+/* existing styles above */
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .nav {
+    display: none;
+  }
+}

@@ -1,0 +1,6 @@
+.env
+src/.env
+/node_modules
+src/data
+/src/__tests__/tmp_test_data
+dist
