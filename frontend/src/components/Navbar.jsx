@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import "./Navbar.css";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const { pathname } = useLocation();
@@ -64,7 +63,6 @@ export default function Navbar() {
 
         {/* Right (Desktop Only) */}
         <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
           <div className="text-gray-400 text-sm hidden lg:block">Riley.dev</div>
         </div>
       </div>
@@ -83,8 +81,6 @@ export default function Navbar() {
           >
             <HiX />
           </button>
-
-          <ThemeToggle />
 
           {/* Mobile Links */}
           {links.map((link) => {

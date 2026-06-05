@@ -1,3 +1,4 @@
+import ThemeToggle from "./ThemeToggle";
 export default function Footer() {
   return (
     <footer style={styles.footer}>
@@ -8,15 +9,15 @@ export default function Footer() {
       <div style={styles.right}>
         © {new Date().getFullYear()} | All rights reserved
       </div>
+              <div className="hidden md:flex items-center gap-3">
+                <ThemeToggle />
+                </div>
     </footer>
   );
 }
 
 const styles = {
   footer: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
     width: "100%",
     display: "flex",
     justifyContent: "space-between",

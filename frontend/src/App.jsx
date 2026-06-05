@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
+import Theme from "./components/ThemeToggle";
 
 import Home from "./pages/Home";
 import Project from "./pages/Projects";
