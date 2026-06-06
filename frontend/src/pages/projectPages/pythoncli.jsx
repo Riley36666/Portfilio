@@ -1,5 +1,6 @@
-import Background from "../../components/MainBackground"
-import { motion } from "framer-motion"
+import Background from "../../components/Backgroud";
+import { motion } from "framer-motion";
+
 
 export default function PythonCLI() {
   return (
@@ -71,8 +72,8 @@ function CliProject() {
             Web Integration Repository
           </a>
         </div>
-
       </div>
+
     </motion.div>
   )
 }

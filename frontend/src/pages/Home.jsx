@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import "./Home.css"
-import Background from "../components/MainBackground";
+import Background from "../components/Background";
 
 
 

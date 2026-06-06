@@ -1,4 +1,4 @@
-import Background from "../../components/MainBackground"
+import Background from "../../components/Background"
 
 
 export default function JavaGame() {
