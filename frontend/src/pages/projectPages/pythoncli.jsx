@@ -1,4 +1,4 @@
-import Background from "../../components/Backgroud";
+import Background from "../../components/Background";
 import { motion } from "framer-motion";
 
 
